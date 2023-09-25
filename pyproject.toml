@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "horkora"
+version = "0.1.0"
+description = "A simple news aggregator."
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django-tinymce = "^3.6.1"
+Django = "^4.2.5"
+beautifulsoup4 = "^4.12.2"
+requests = "^2.31.0"
+
+
+
+[tool.poetry-dynamic-versioning]
+enable = true
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0,<2.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
