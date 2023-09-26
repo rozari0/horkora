@@ -2,7 +2,7 @@
 name = "horkora"
 version = "0.1.0"
 description = "A simple news aggregator."
-authors = ["Your Name <you@example.com>"]
+authors = ["Daniel <rozario@duck.com>"]
 license = "MIT"
 readme = "README.md"
 

@@ -25,6 +25,6 @@ def index(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index),
+    path("", include("news.urls")),
     path("tinymce/", include("tinymce.urls")),
 ]
