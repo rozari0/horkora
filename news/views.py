@@ -1,8 +1,8 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, permission_required
-
-from news.models import Category, News
+from django.shortcuts import get_object_or_404
+from news.models import Category, News, About
 from news.forms import NewsForm
 
 # Create your views here.
@@ -11,21 +11,30 @@ from news.forms import NewsForm
 def index_page(request, page):
     context = {}
     news = News.objects.all()
-    category = Category.objects.all()
     paginator = Paginator(news, per_page=5)
     context["articles"] = paginator.get_page(page)
-    context["category"] = category
     return render(request=request, template_name="news/index.html", context=context)
 
 
 def index(request):
     context = {}
-    news = News.objects.all()
-    category = Category.objects.all()
+    news = News.objects.all().order_by("id")
     paginator = Paginator(news, per_page=5)
     context["articles"] = paginator.get_page(1)
-    context["category"] = category
     return render(request=request, template_name="news/index.html", context=context)
+
+
+def viewnews(request, newsid):
+    news = get_object_or_404(News, pk=newsid)
+    return render(request, template_name="news/viewnews.html", context={"news": news})
+
+
+def about(request):
+    return render(
+        request,
+        template_name="news/about.html",
+        context={"about": About.objects.first()},
+    )
 
 
 @permission_required("news.add_news", raise_exception=True, login_url="/admin/")
@@ -46,6 +55,7 @@ def editNews(request, newsid):
         form = NewsForm(request.POST, instance=newsinfo)
         if form.is_valid():
             form.save(commit=True)
+            return viewnews(request, newsid)
     return render(request, template_name="news/addnews.html", context={"form": form})
 
 

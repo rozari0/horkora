@@ -1,0 +1,12 @@
+{% extends 'news/base.html' %}
+{% block body %}
+<div class="">
+    <h4>
+        {{ news.title }}
+    </h4>
+    <p>
+        {{ news.summery }}
+    </p>
+    <a href="{{ news.news_link }}" class="button">Read Full Story</a>
+</div>
+{% endblock %}

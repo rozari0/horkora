@@ -1,159 +1,37 @@
-.custom-menu-wrapper {
-    background-color: #808080;
-    margin-bottom: 2.5em;
-    white-space: nowrap;
-    position: relative;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-.custom-menu {
-    display: inline-block;
-    width: auto;
-    vertical-align: middle;
-    -webkit-font-smoothing: antialiased;
+.container {
+    margin: 2rem auto;
+    padding: 1rem;
 }
 
-.custom-menu .pure-menu-link,
-.custom-menu .pure-menu-heading {
-    color: white;
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
 }
 
-.custom-menu .pure-menu-link:hover,
-.custom-menu .pure-menu-heading:hover {
-    background-color: transparent;
+nav {
+    display: flex;
+    justify-content: center;
 }
 
-.custom-menu-top {
-    position: relative;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 1rem;
 }
 
-.custom-menu-brand {
-    display: block;
+footer {
+    background-color: #333;
+    color: #fff;
     text-align: center;
-    position: relative;
-}
-
-.custom-menu-toggle {
-    width: 44px;
-    height: 44px;
-    display: block;
-    position: absolute;
-    top: 3px;
-    right: 0;
-    display: none;
-}
-
-.custom-menu-toggle .bar {
-    background-color: white;
-    display: block;
-    width: 20px;
-    height: 2px;
-    border-radius: 100px;
-    position: absolute;
-    top: 22px;
-    right: 12px;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    transition: all 0.5s;
-}
-
-.custom-menu-toggle .bar:first-child {
-    -webkit-transform: translateY(-6px);
-    -moz-transform: translateY(-6px);
-    -ms-transform: translateY(-6px);
-    transform: translateY(-6px);
-}
-
-.custom-menu-toggle.x .bar {
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-.custom-menu-toggle.x .bar:first-child {
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    -ms-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-
-.custom-menu-screen {
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    transition: all 0.5s;
-    height: 3em;
-    width: 70em;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-}
-
-.custom-menu-tucked .custom-menu-screen {
-    -webkit-transform: translateY(-44px);
-    -moz-transform: translateY(-44px);
-    -ms-transform: translateY(-44px);
-    transform: translateY(-44px);
-}
-
-@media (max-width: 62em) {
-    .custom-menu {
-        display: block;
-    }
-
-    .custom-menu-toggle {
-        display: block;
-        display: none\9;
-    }
-
-    .custom-menu-bottom {
-        position: absolute;
-        width: 100%;
-        border-top: 1px solid #eee;
-        background-color: #808080;
-        z-index: 100;
-    }
-
-    .custom-menu-bottom .pure-menu-link {
-        opacity: 1;
-        -webkit-transform: translateX(0);
-        -moz-transform: translateX(0);
-        -ms-transform: translateX(0);
-        transform: translateX(0);
-        -webkit-transition: all 0.5s;
-        -moz-transition: all 0.5s;
-        -ms-transition: all 0.5s;
-        transition: all 0.5s;
-    }
-
-    .custom-menu-bottom.custom-menu-tucked .pure-menu-link {
-        -webkit-transform: translateX(-140px);
-        -moz-transform: translateX(-140px);
-        -ms-transform: translateX(-140px);
-        transform: translateX(-140px);
-        opacity: 0;
-        opacity: 1\9;
-    }
-
-    .pure-menu-horizontal.custom-menu-tucked {
-        z-index: -1;
-        top: 45px;
-        position: absolute;
-        overflow: hidden;
-    }
-}
-
-.news-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
 .news-title {
@@ -171,7 +49,20 @@
 }
 
 .news-category {
+    border: 0.5px solid;
     font-size: 14px;
     color: #007BFF;
     margin-bottom: 10px;
+    display: inline-block;
+
+}
+
+
+.news-card {
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+#id_title {
+    box-sizing: border-box;
 }

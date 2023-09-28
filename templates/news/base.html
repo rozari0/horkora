@@ -3,49 +3,35 @@
 
 <head>
     <meta charset="UTF-8" />
-    {% load static %}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'js/pure-min.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/header.css' %}" />
-    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <title>Your Website Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
 </head>
 
 <body>
-    <div class="custom-menu-wrapper">
-        <div class="pure-menu custom-menu custom-menu-top">
-            <a href="#" class="pure-menu-heading custom-menu-brand">Horkora</a>
-            <a href="#" class="custom-menu-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Contact</a>
+            </nav>
         </div>
-        <div class="pure-menu pure-menu-horizontal pure-menu-scrollable custom-menu custom-menu-bottom custom-menu-tucked"
-            id="tuckedMenu">
-            <div class="custom-menu-screen"></div>
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item">
-                    <a href="#" class="pure-menu-link">Home</a>
-                </li>
-                {% for cat in category %}
-                <li class="pure-menu-item">
-                    <a href="#" class="pure-menu-link">{{ cat }}</a>
-                </li>
-                {% endfor %}
-                <li class="pure-menu-item">
-                    <a href="#" class="pure-menu-link">About</a>
-                </li>
-            </ul>
-        </div>
+    </header>
+
+    <div class="container">
+        {% block body %}{% endblock %}
+        {% block pagination %} {% for page_number in page_obj.paginator.page_range %} {% endfor %} {% endblock %}
     </div>
-    {% block body %}{% endblock %}
-    {% block pagination %} {% for page_number in page_obj.paginator.page_range %} {% endfor %} {% endblock %}
+
+    <footer>
+        <div class="container">
+            &copy; 2023 Horkora. All Rights Reserved.
+        </div>
+    </footer>
 </body>
-<script>
-    (function (window, document) {
-        document.getElementById("toggle").addEventListener("click", function (e) {
-            document
-                .getElementById("tuckedMenu")
-                .classList.toggle("custom-menu-tucked");
-            document.getElementById("toggle").classList.toggle("x");
-        });
-    })(this, this.document);
-</script>
 
 </html>

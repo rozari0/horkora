@@ -14,7 +14,6 @@ class News(models.Model):
     news_link = models.URLField(verbose_name="News Link")
     archive_link = models.URLField(verbose_name="Archive Link of News", blank=True)
     category = models.ManyToManyField("Category", blank=True)
-    is_draft = models.BooleanField(verbose_name="This is a draft.", default=False)
     published_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
@@ -42,3 +41,10 @@ class Category(models.Model):
 
 
 pre_save.connect(news_pre_save, sender=News)
+
+
+class About(models.Model):
+    about = models.TextField(verbose_name="About Page")
+
+    def __str__(self) -> str:
+        return "About Page"

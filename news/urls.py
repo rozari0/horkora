@@ -16,14 +16,16 @@ Including another URLconf
 """
 from django.urls import include, path
 
-from news.views import index, index_page, addNews, editNews
+from news.views import index, index_page, addNews, editNews, viewnews, about
 
 from .api import api_v1
 
 urlpatterns = [
     path("", index),
-    path("<int:page>", index, name="Pagination"),
+    path("<int:page>/", index_page, name="Pagination"),
     path("addnews/", addNews),
+    path("news/<int:newsid>", viewnews),
+    path("about/", about, name="About"),
     path("editnews/<int:newsid>/", editNews),
     path("api_v1/", api_v1.urls),
 ]

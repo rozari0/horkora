@@ -1,10 +1,16 @@
 {% extends "news/base.html" %}
 
 {% block body %}
-<form method="post">
-    {{ form.as_p }}
+<form method="post" class="container">
+    {{ form }}
     {% csrf_token %}
-    <button type="submit">Submit</button>
+    <tr>
+        <th></th>
+        <br>
+        <td><input type="submit" class="button"></td>
+
+    </tr>
+
 </form>
 
 <script>

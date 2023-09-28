@@ -27,10 +27,9 @@ class NewsSchema(Schema):
 
 
 @api_v1.get("/posts", response=List[NewsSchema])
-@paginate(PageNumberPagination, page_size=5)
+@paginate(PageNumberPagination, page_size=10)
 def add(request):
-    news = News.objects.all()
-    return news
+    return News.objects.all()
 
 
 @api_v1.get("/getinfo")
