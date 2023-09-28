@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-1mi3=hfmfh)w4ef%6%n7++5a99_q-n^q*=f+r@0h5js512-@c0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1", "3f0e-160-202-145-246.ngrok-free.app"]
 
 
 # Application definition
@@ -136,9 +136,9 @@ TINYMCE_DEFAULT_CONFIG = {
     "selector": "textarea",
     "theme": "silver",
     "plugins": """
-   textcolor save link image media preview codesample contextmenu
+   save link image media preview codesample 
    table code lists fullscreen insertdatetime nonbreaking
-   contextmenu directionality searchreplace wordcount visualblocks
+   directionality searchreplace wordcount visualblocks
    visualchars code fullscreen autolink lists charmap print hr
    anchor pagebreak
    """,

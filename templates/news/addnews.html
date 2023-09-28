@@ -1,0 +1,38 @@
+{% extends "news/base.html" %}
+
+{% block body %}
+<form method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+    let news_link = document.getElementById('id_news_link')
+    news_link.oninput = (e) => {
+        fetch(`/api_v1/getinfo?link=${e.target.value}`).then(
+            (response) => {
+                return response.json();
+            }
+        ).then(
+            (data) => {
+                changeform(data);
+            }
+        ).catch(
+            console.log(e)
+        )
+    }
+
+    let changeform = (data) => {
+        if (data.title != '') {
+            document.getElementById('id_title').value = data.title;
+        }
+        if (data.author != '') {
+            document.getElementById('id_author').value = data.author;
+        }
+        if (data.summery != '') {
+            document.getElementById('id_summery').value = data.summery;
+        }
+    }
+</script>
+{% endblock %}
