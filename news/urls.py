@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.urls import include, path
 
-from news.views import index, index_page, addNews, editNews, viewnews, about
+from news.views import about, addNews, editNews, index, index_page, viewnews
 
 from .api import api_v1
 
@@ -28,4 +28,5 @@ urlpatterns = [
     path("about/", about, name="About"),
     path("editnews/<int:newsid>/", editNews),
     path("api_v1/", api_v1.urls),
+    path("feed/", include("news.feed")),
 ]

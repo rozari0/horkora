@@ -1,11 +1,12 @@
-from typing import List
 from datetime import datetime
+from typing import List
+
+import validators
 from ninja import NinjaAPI, Schema
 from ninja.pagination import PageNumberPagination, paginate
-from utils.scrape import scrape_summery
-import validators
 
 from news.models import Category, News
+from utils.scrape import scrape_summery
 
 api_v1 = NinjaAPI()
 

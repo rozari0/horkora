@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import pre_save
 
 from utils.scrape import scrape_summery
+from django.utils.text import slugify
 
 
 # Create your models here.
@@ -35,11 +36,20 @@ def news_pre_save(sender, instance, *args, **kwargs):
 
 class Category(models.Model):
     title = models.CharField(verbose_name="Categories of News", max_length=50)
+    slug = models.CharField(
+        verbose_name="Slug of this category", unique=True, max_length=100, blank=True
+    )
 
     def __str__(self):
         return self.title
 
 
+def category_pre_save(sender, instance, *args, **kwargs):
+    if instance.slug == "" or not instance.slug:
+        instance.slug = slugify(instance.title)
+
+
+pre_save.connect(category_pre_save, sender=Category)
 pre_save.connect(news_pre_save, sender=News)
 
 
