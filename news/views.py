@@ -29,6 +29,25 @@ def viewnews(request, newsid):
     return render(request, template_name="news/viewnews.html", context={"news": news})
 
 
+def categories(request):
+    categories_list = Category.objects.all()
+    return render(
+        request,
+        template_name="news/categories.html",
+        context={"categories": categories_list},
+    )
+
+
+def single_category(request, category):
+    article = News.objects.filter(category=get_object_or_404(Category, slug=category))
+    print(article)
+    return render(
+        request,
+        template_name="news/category.html",
+        context={"articles": article, "category": category.capitalize()},
+    )
+
+
 def about(request):
     return render(
         request,

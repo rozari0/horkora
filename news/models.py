@@ -1,8 +1,8 @@
 from django.db import models
 from django.db.models.signals import pre_save
+from django.utils.text import slugify
 
 from utils.scrape import scrape_summery
-from django.utils.text import slugify
 
 
 # Create your models here.
@@ -22,6 +22,9 @@ class News(models.Model):
         if self.title != "":
             return self.title
         return "Die"
+
+    def get_absolute_url(self):
+        return self.news_link
 
 
 def news_pre_save(sender, instance, *args, **kwargs):

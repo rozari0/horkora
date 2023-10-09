@@ -1,0 +1,14 @@
+{% extends "news/base.html" %}
+{% block title %}
+<title>Categories</title>
+{% endblock %}
+
+{% block body %}
+<h2>List of categories:</h2>
+<ul>
+    {% for category in categories %}
+    <li><a href="/categories/{{ category.slug }}">{{ category.title }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

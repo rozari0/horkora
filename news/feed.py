@@ -1,13 +1,14 @@
-from django.urls import path
 from django.contrib.syndication.views import Feed
-from django.urls import reverse
-from news.models import News
+from django.shortcuts import get_object_or_404
+from django.urls import path, reverse
+
+from news.models import Category, News
 
 
 class LatestNewsFeed(Feed):
     title = "Horkora News Feed"
     link = "/feed/latest/"
-    description = "Updates on changes and additions to police beat central."
+    description = "Horkokra News Feed in Rss Format."
 
     def items(self):
         return News.objects.all()[:10]
@@ -22,6 +23,24 @@ class LatestNewsFeed(Feed):
         return item.news_link
 
 
+class LatestNewsFeedCategory(Feed):
+    def get_object(self, request, category):
+        return get_object_or_404(Category, slug=category)
+
+    def title(self, obj):
+        return "News in %s" % obj.title
+
+    def link(self, obj):
+        return ""
+
+    def description(self, obj):
+        return "Recent news in %s" % obj.title
+
+    def items(self, obj):
+        return News.objects.filter(category=obj)[:30]
+
+
 urlpatterns = [
     path("latest/", LatestNewsFeed()),
+    path("<str:category>/", LatestNewsFeedCategory()),
 ]

@@ -1,8 +1,19 @@
 {% extends "news/base.html" %}
 {% block title %}
-<title>News List</title>
+<title>{{ category }} | Category</title>
 {% endblock %}
+
 {% block body %}
+
+{% if not articles %}
+<h1 style="justify-content: center;">
+    This Category Doesn't Have Any Post Releated.
+</h1>
+{% else %}
+<h2>Post in {{ category.capitalize }}:</h2>
+{% endif %}
+
+
 {% for article in articles %}
 
 <div class="news-card container">
@@ -13,9 +24,12 @@
         {% if article.category.all %}
         <p style="float: left;">Category: </p>
         {% for category in article.category.all %}
-        <p class="news-category">
-            {{ category }}
-        </p>
+        <a href="/categories/{{ category.slug }}">
+            <p class="news-category">
+                {{ category }}
+            </p>
+        </a>
+
         {% endfor %}
         {% endif %}
     </div>
@@ -24,6 +38,5 @@
         target="_blank">Read Full Story</a>
 </div>
 {% endfor %}
-{% endblock %}
-{% block pagination %}
+
 {% endblock %}

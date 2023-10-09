@@ -16,12 +16,23 @@ Including another URLconf
 """
 from django.urls import include, path
 
-from news.views import about, addNews, editNews, index, index_page, viewnews
+from news.views import (
+    about,
+    addNews,
+    categories,
+    editNews,
+    index,
+    index_page,
+    single_category,
+    viewnews,
+)
 
 from .api import api_v1
 
 urlpatterns = [
     path("", index),
+    path("categories/", categories, name="Categories"),
+    path("categories/<str:category>", single_category, name="Categories"),
     path("<int:page>/", index_page, name="Pagination"),
     path("addnews/", addNews),
     path("news/<int:newsid>", viewnews),
