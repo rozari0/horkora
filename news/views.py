@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+from django.views.generic import DetailView, ListView
 
 from news.forms import NewsForm
 from news.models import About, Category, News
@@ -8,43 +10,31 @@ from news.models import About, Category, News
 # Create your views here.
 
 
-def index_page(request, page):
-    context = {}
-    news = News.objects.all()
-    paginator = Paginator(news, per_page=5)
-    context["articles"] = paginator.get_page(page)
-    return render(request=request, template_name="news/index.html", context=context)
+class NewsList(ListView):
+    model = News
+    template_name = "news/newslist.html"
+    context_object_name = "articles"
 
 
-def index(request):
-    context = {}
-    news = News.objects.all().order_by("id")
-    paginator = Paginator(news, per_page=5)
-    context["articles"] = paginator.get_page(1)
-    return render(request=request, template_name="news/index.html", context=context)
+class DetailNews(DetailView):
+    model = News
+    template_name = "news/viewnews.html"
+    context_object_name = "news"
 
 
-def viewnews(request, newsid):
-    news = get_object_or_404(News, pk=newsid)
-    return render(request, template_name="news/viewnews.html", context={"news": news})
+class CategoriesList(ListView):
+    model = Category
+    template_name = "news/categories.html"
+    context_object_name = "categories"
 
 
-def categories(request):
-    categories_list = Category.objects.all()
-    return render(
-        request,
-        template_name="news/categories.html",
-        context={"categories": categories_list},
-    )
-
-
-def single_category(request, category):
-    article = News.objects.filter(category=get_object_or_404(Category, slug=category))
+def single_category(request, slug):
+    article = News.objects.filter(category=get_object_or_404(Category, slug=slug))
     print(article)
     return render(
         request,
         template_name="news/category.html",
-        context={"articles": article, "category": category.capitalize()},
+        context={"articles": article, "category": slug.capitalize()},
     )
 
 
@@ -73,8 +63,8 @@ def editNews(request, newsid):
     if request.method == "POST":
         form = NewsForm(request.POST, instance=newsinfo)
         if form.is_valid():
-            form.save(commit=True)
-            return viewnews(request, newsid)
+            form.save()
+            return redirect("news", pk=newsid)
     return render(request, template_name="news/addnews.html", context={"form": form})
 
 

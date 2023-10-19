@@ -218,6 +218,24 @@ files = [
 ]
 
 [[package]]
+name = "crispy-bootstrap5"
+version = "0.7"
+description = "Bootstrap5 template pack for django-crispy-forms"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "crispy-bootstrap5-0.7.tar.gz", hash = "sha256:0745a67199619149b7feca87dab7a45664876ed50fb582b38fd2aeb3f8a8d869"},
+    {file = "crispy_bootstrap5-0.7-py3-none-any.whl", hash = "sha256:f3ff1ef5cb379fe80b1b02e245008f276444098a4bdb8d855bed84c623798a85"},
+]
+
+[package.dependencies]
+django = ">=3.2"
+django-crispy-forms = ">=1.13.0"
+
+[package.extras]
+test = ["pytest", "pytest-django"]
+
+[[package]]
 name = "cryptography"
 version = "41.0.4"
 description = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
@@ -281,6 +299,20 @@ tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 [package.extras]
 argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
+
+[[package]]
+name = "django-crispy-forms"
+version = "2.1"
+description = "Best way to have Django DRY forms"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "django-crispy-forms-2.1.tar.gz", hash = "sha256:4d7ec431933ad4d4b5c5a6de4a584d24613c347db9ac168723c9aaf63af4bb96"},
+    {file = "django_crispy_forms-2.1-py3-none-any.whl", hash = "sha256:d592044771412ae1bd539cc377203aa61d4eebe77fcbc07fbc8f12d3746d4f6b"},
+]
+
+[package.dependencies]
+django = ">=4.2"
 
 [[package]]
 name = "django-ninja"
@@ -349,17 +381,6 @@ crypto = ["cryptography (>=3.3.1)"]
 dev = ["pre-commit"]
 doc = ["markdown-include", "mdx-include (>=1.4.1,<2.0.0)", "mkdocs (>=1.1.2,<2.0.0)", "mkdocs-markdownextradata-plugin (>=0.1.7,<0.3.0)", "mkdocs-material", "mkdocstrings"]
 test = ["black (==21.12b0)", "click (==8.0.4)", "cryptography", "django-stubs", "flake8 (>=3.8.3,<7.0.0)", "isort (>=5.0.6,<6.0.0)", "pytest", "pytest-asyncio", "pytest-cov", "pytest-django", "python-jose (==3.3.0)"]
-
-[[package]]
-name = "django-tinymce"
-version = "3.6.1"
-description = "A Django application that contains a widget to render a form field as a TinyMCE editor."
-optional = false
-python-versions = "*"
-files = [
-    {file = "django-tinymce-3.6.1.tar.gz", hash = "sha256:6f4f6227c2c608052081a436a1e3054c441caae24c9e0c8c3010536e24749e29"},
-    {file = "django_tinymce-3.6.1-py3-none-any.whl", hash = "sha256:da5732413f51cf854352e3148f06f170b59d95a6c6a43fd9f7ccfdd1849f4bf9"},
-]
 
 [[package]]
 name = "idna"
@@ -581,4 +602,4 @@ tooling-extras = ["pyaml (>=23.7.0)", "pypandoc-binary (>=1.11)", "pytest (>=7.4
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "82d87be15979ea651fc8e8af8d5c43261e1dbd16a522faf93fa6837073af6383"
+content-hash = "65401680765e3d5326f1a0847935e7d21b9ccc15c09419e25e9266b9763aeaeb"

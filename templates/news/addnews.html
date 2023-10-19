@@ -1,44 +1,42 @@
-{% extends "news/base.html" %}
+{% extends 'news/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block body %}
-<form method="post" class="container">
-    {{ form }}
+  <form method="post" class="container">
+    {{ form|crispy }}
     {% csrf_token %}
     <tr>
-        <th></th>
-        <br>
-        <td><input type="submit" class="button"></td>
-
+      <th></th>
+      <br />
+      <td>
+        <input type="submit" class="button" />
+      </td>
     </tr>
+  </form>
 
-</form>
-
-<script>
+  <script>
     let news_link = document.getElementById('id_news_link')
     news_link.oninput = (e) => {
-        fetch(`/api_v1/getinfo?link=${e.target.value}`).then(
-            (response) => {
-                return response.json();
-            }
-        ).then(
-            (data) => {
-                changeform(data);
-            }
-        ).catch(
-            console.log(e)
-        )
+      fetch(`/api_v1/getinfo?link=${e.target.value}`)
+        .then((response) => {
+          return response.json()
+        })
+        .then((data) => {
+          changeform(data)
+        })
+        .catch(console.log(e))
     }
-
+    
     let changeform = (data) => {
-        if (data.title != '') {
-            document.getElementById('id_title').value = data.title;
-        }
-        if (data.author != '') {
-            document.getElementById('id_author').value = data.author;
-        }
-        if (data.summery != '') {
-            document.getElementById('id_summery').value = data.summery;
-        }
+      if (data.title != '') {
+        document.getElementById('id_title').value = data.title
+      }
+      if (data.author != '') {
+        document.getElementById('id_author').value = data.author
+      }
+      if (data.summery != '') {
+        document.getElementById('id_summery').value = data.summery
+      }
     }
-</script>
+  </script>
 {% endblock %}

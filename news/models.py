@@ -18,6 +18,9 @@ class News(models.Model):
     published_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ("-updated_at",)
+
     def __str__(self):
         if self.title != "":
             return self.title

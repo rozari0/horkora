@@ -1,14 +1,15 @@
-{% extends "news/base.html" %}
+{% extends 'news/base.html' %}
 {% block title %}
-<title>Categories</title>
+  <title>Categories</title>
 {% endblock %}
 
 {% block body %}
-<h2>List of categories:</h2>
-<ul>
+  <h2>List of categories:</h2>
+  <ul class="list-group" style="text-align: center;">
     {% for category in categories %}
-    <li><a href="/categories/{{ category.slug }}">{{ category.title }}</a></li>
+      <li class="list-group-item">
+        <a href="/categories/{{ category.slug }}">{{ category.title }}</a>
+      </li>
     {% endfor %}
-</ul>
-
+  </ul>
 {% endblock %}

@@ -17,26 +17,24 @@ Including another URLconf
 from django.urls import include, path
 
 from news.views import (
+    CategoriesList,
+    DetailNews,
+    NewsList,
     about,
     addNews,
-    categories,
     editNews,
-    index,
-    index_page,
     single_category,
-    viewnews,
 )
 
 from .api import api_v1
 
 urlpatterns = [
-    path("", index),
-    path("categories/", categories, name="Categories"),
-    path("categories/<str:category>", single_category, name="Categories"),
-    path("<int:page>/", index_page, name="Pagination"),
-    path("addnews/", addNews),
-    path("news/<int:newsid>", viewnews),
-    path("about/", about, name="About"),
+    path("", NewsList.as_view(), name="news_list"),
+    path("categories/", CategoriesList.as_view(), name="categories"),
+    path("categories/<slug:slug>", single_category, name="categories_to"),
+    path("addnews/", addNews, name="write"),
+    path("news/<int:pk>/", DetailNews.as_view(), name="news"),
+    path("about/", about, name="about"),
     path("editnews/<int:newsid>/", editNews),
     path("api_v1/", api_v1.urls),
     path("feed/", include("news.feed")),
