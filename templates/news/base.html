@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
+
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="shortcut icon" href="{% static 'image/news-120x120.png' %}" type="image/x-icon" />
     {% block title %}
 
     {% endblock %}
@@ -15,7 +17,7 @@
       <div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">Horkora</a>
+            <a class="navbar-brand" href="{% url 'home' %}">Horkora</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -52,19 +54,22 @@
         </nav>
       </div>
     </header>
-
-    <div class="container">
+    <hr />
+    <div class="container" style="border: solid black 0.2px; padding: 5px 5px 5px 5px;">
       {% block body %}
 
       {% endblock %}
       {% block pagination %}
-        {% for page_number in page_obj.paginator.page_range %}{% endfor %}
+
       {% endblock %}
     </div>
 
     <footer>
+      <hr />
       <div class="container" style="text-align: center;">&copy; 2023 Horkora. All Rights Reserved.</div>
+      <hr />
     </footer>
+
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   </body>
 </html>

@@ -1,12 +1,13 @@
 from django.db import models
 from django.db.models.signals import pre_save
+from django.urls import reverse
 from django.utils.text import slugify
 
 from utils.scrape import scrape_summery
 
 
 # Create your models here.
-class News(models.Model):
+class Article(models.Model):
     title = models.CharField(verbose_name="News Title", max_length=250, blank=True)
     author = models.CharField(
         verbose_name="News Author", max_length=100, blank=True, null=True
@@ -27,7 +28,7 @@ class News(models.Model):
         return "Die"
 
     def get_absolute_url(self):
-        return self.news_link
+        return reverse("article", kwargs={"pk": self.id})
 
 
 def news_pre_save(sender, instance, *args, **kwargs):
@@ -56,7 +57,7 @@ def category_pre_save(sender, instance, *args, **kwargs):
 
 
 pre_save.connect(category_pre_save, sender=Category)
-pre_save.connect(news_pre_save, sender=News)
+pre_save.connect(news_pre_save, sender=Article)
 
 
 class About(models.Model):

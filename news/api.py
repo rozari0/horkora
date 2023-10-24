@@ -5,7 +5,7 @@ import validators
 from ninja import NinjaAPI, Schema
 from ninja.pagination import PageNumberPagination, paginate
 
-from news.models import Category, News
+from news.models import Category, Article
 from utils.scrape import scrape_summery
 
 api_v1 = NinjaAPI()
@@ -30,7 +30,7 @@ class NewsSchema(Schema):
 @api_v1.get("/posts", response=List[NewsSchema])
 @paginate(PageNumberPagination, page_size=10)
 def add(request):
-    return News.objects.all()
+    return Article.objects.all()
 
 
 @api_v1.get("/getinfo")

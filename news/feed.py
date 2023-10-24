@@ -2,7 +2,7 @@ from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
 from django.urls import path, reverse
 
-from news.models import Category, News
+from news.models import Category, Article
 
 
 class LatestNewsFeed(Feed):
@@ -11,7 +11,7 @@ class LatestNewsFeed(Feed):
     description = "Horkokra News Feed in Rss Format."
 
     def items(self):
-        return News.objects.all()[:10]
+        return Article.objects.all()[:10]
 
     def item_title(self, item):
         return item.title
@@ -37,7 +37,7 @@ class LatestNewsFeedCategory(Feed):
         return "Recent news in %s" % obj.title
 
     def items(self, obj):
-        return News.objects.filter(category=obj)[:30]
+        return Article.objects.filter(category=obj)[:30]
 
 
 urlpatterns = [

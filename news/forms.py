@@ -1,11 +1,11 @@
 from django import forms
 
-from news.models import News
+from news.models import Article
 
 
 class NewsForm(forms.ModelForm):
     class Meta:
-        model = News
+        model = Article
         fields = (
             "title",
             "author",
