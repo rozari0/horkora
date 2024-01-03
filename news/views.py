@@ -12,7 +12,7 @@ from news.models import About, Category, Article
 class NewsList(View):
     def get(self, request, page=1):
         news = Article.objects.all()
-        paginator = Paginator(news, 3)
+        paginator = Paginator(news, 4)
         page = paginator.get_page(page)
         return render(
             request,
@@ -33,7 +33,7 @@ class NewsList(View):
 class DetailNews(DetailView):
     model = Article
     template_name = "news/viewnews.html"
-    context_object_name = "news"
+    context_object_name = "article"
 
 
 class CategoriesList(ListView):

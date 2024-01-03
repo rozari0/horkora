@@ -7,15 +7,15 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-Django = "^4.2.5"
+python = "^3.10"
 beautifulsoup4 = "^4.12.2"
 requests = "^2.31.0"
 django-ninja = "^0.22.2"
 django-ninja-jwt = "^5.2.5"
 validators = "^0.22.0"
-crispy-bootstrap5 = "^0.7"
 django-crispy-forms = "^2.1"
+crispy-bulma = "^0.10.0"
+django = "^5.0.1"
 
 
 

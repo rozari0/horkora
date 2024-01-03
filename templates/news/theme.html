@@ -1,0 +1,75 @@
+{% extends 'news/base.html' %} {% block title %}
+<title>User Preference</title>
+{% endblock %} {% block body %}
+<div class="select is-primary is-large" style="left:auto">
+  <label for="themeSelect">Select a Theme:</label>
+  <select id="themeSelect"></select>
+</div>
+<br><br><br>
+
+
+<script>
+  // Predefined array of theme options
+  const availableThemes = ["Cerulean", "Cosmo", "Cyborg","Darkly","Default","Flatly","Journal","Litera","Lumen","Lux","Materia","Minty","Nuclear","Pulse","Sandstone","Simplex","Slate","Solar","Spacelab","Superhero","United","Yeti"];
+
+  // Function to populate the theme select dropdown
+  function populateThemeOptions() {
+    const themeSelect = document.getElementById("themeSelect");
+
+    // Create options based on the available themes
+    availableThemes.forEach((theme) => {
+      const option = document.createElement("option");
+      option.value = theme;
+      option.text = theme;
+      themeSelect.appendChild(option);
+    });
+
+    // Set the current selected theme from localStorage, or use the first theme as a default
+    const selectedTheme =
+      localStorage.getItem("selectedTheme") || availableThemes[0];
+    themeSelect.value = selectedTheme;
+  }
+
+  // Function to handle theme change
+  function changeTheme() {
+    const selectedTheme = document.getElementById("themeSelect").value;
+
+    // Save the selected theme to localStorage
+    localStorage.setItem("selectedTheme", selectedTheme);
+
+    // Load the selected theme
+    loadTheme();
+  }
+
+  // Function to load the theme
+  function loadTheme() {
+    const themeName = localStorage.getItem("selectedTheme") || "defaultTheme";
+
+    // Create a link element for the CSS file
+    const linkElement = document.createElement("link");
+    linkElement.rel = "stylesheet";
+    linkElement.href = `https://jenil.github.io/bulmaswatch/${themeName.toLowerCase()}/bulmaswatch.min.css`;
+
+    // Remove any existing stylesheets
+    const existingStylesheets = document.querySelectorAll(
+      'link[rel="stylesheet"]'
+    );
+    existingStylesheets.forEach((sheet) => sheet.remove());
+
+    // Append the link element to the document's head
+    document.head.appendChild(linkElement);
+  }
+
+  // Event listener for theme change
+  document
+    .getElementById("themeSelect")
+    .addEventListener("change", changeTheme);
+
+  // Call the function to populate the theme select dropdown
+  populateThemeOptions();
+
+  // Call the function to load the theme when the page loads
+  document.addEventListener("DOMContentLoaded", loadTheme);
+</script>
+
+{% endblock %}

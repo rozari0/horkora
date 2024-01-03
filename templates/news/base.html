@@ -5,57 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
 
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+   <link rel="stylesheet" id="temp" href="{% static 'css/bulma.min.css' %}" />
     <link rel="shortcut icon" href="{% static 'image/news-120x120.png' %}" type="image/x-icon" />
     {% block title %}
 
     {% endblock %}
+    <script>
+      function loadTheme() {
+        const themeName = localStorage.getItem('selectedTheme') || 'materia';
+    
+        const linkelement = document.createElement('link');
+        linkelement.rel = 'stylesheet';
+        linkelement.href = `https://jenil.github.io/bulmaswatch/${themeName.toLowerCase()}/bulmaswatch.min.css`;
+        document.head.appendChild(linkelement);
+        oldtheme = document.getElementById("temp").remove();
+    }
+    
+    // Call the function to load the theme when the page loads
+    document.addEventListener('DOMContentLoaded', loadTheme);
+    
+    </script>
   </head>
 
   <body>
-    <header>
-      <div>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}">Horkora</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'news_list' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{% url 'about' %}">About</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Account</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
-                      <a class="dropdown-item" href="{% url 'write' %}">Add News</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="{% url 'categories' %}">Categories</a>
-                    </li>
-                    <li>
-                      <hr class="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-    <hr />
-    <div class="container" style="border: solid black 0.2px; padding: 5px 5px 5px 5px;">
+    {% include "navbar.html" %}
+
+    <div class="container">
       {% block body %}
 
       {% endblock %}
@@ -64,11 +39,13 @@
       {% endblock %}
     </div>
 
-    <footer>
-      <hr />
-      <div class="container" style="text-align: center;">&copy; 2023 Horkora. All Rights Reserved.</div>
-      <hr />
-    </footer>
+    <footer class="footer">
+  <div class="content has-text-centered">
+    <p>&copy; 2023 <strong>Horkora</strong>. All Rights Reserved.
+
+    </p>
+  </div>
+</footer>
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
   </body>
